@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/cs/home/stu/stone4ae/456/lab_8/lab_8.srcs/sources_1/new/rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "/cs/home/stu/stone4ae/456/lab_8/lab_8.srcs/sim_1/new/rom_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rom_tb
