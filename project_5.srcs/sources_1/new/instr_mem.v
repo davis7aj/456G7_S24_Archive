@@ -27,6 +27,7 @@
 
 module instr_mem(
     input [7:0] instr_address,
+    output reg HALT,
     output reg [31:0] instruction
     );
     
@@ -68,6 +69,9 @@ module instr_mem(
             8'h60: instruction = memory[71];
             8'h64: instruction = memory[72];
         endcase
+        if (instruction == 0) begin
+            HALT <= 1;
+        end
     end
     // can
 endmodule

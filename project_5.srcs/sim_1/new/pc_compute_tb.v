@@ -28,18 +28,20 @@ module pc_compute_tb;
     reg branch, zero;
     reg [31:0] immediate;
     wire [7:0] pc_out;
+    
+    wire HALT;
     localparam time_step = 20;
     
-    pc_compute pc1 (clk, SWITCHES[1:0], immediate, branch, zero, pc_out);
+    pc_compute pc1(clk, SWITCHES[1:0], immediate, branch, zero, pc_out);
     
     always #((CLK_PERIOD / 2)) clk = ~clk;
     
     initial begin
-        SWITCHES[0] = 0;
+        SWITCHES = 0;
         immediate = 32'b0;
+        #time_step;
         branch = 0;
         zero = 0;
-        #time_step;
         #time_step;
         
         SWITCHES[0] = 1;

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 04/02/2024 02:55:47 PM
+// Create Date: 04/03/2024 04:22:01 PM
 // Design Name: 
-// Module Name: instr_mem_tb
+// Module Name: riscV_top_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,23 +20,19 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instr_mem_tb;
-    wire [31:0] instruction;
-    wire HALT;
-    reg [7:0] instr_address;
-    
+module riscV_top_tb;
+    wire [5:0] LEDS;
+    reg [1:0] SWITCHES;
+    reg clk = 0;
+    wire [7:0] current;
     localparam time_step = 20;
+    parameter CLK_PERIOD = 10;
+    riscV_top top(clk, SWITCHES, LEDS, current);
     
-    instr_mem instr_mem1(instr_address, HALT, instruction);
     
+    always #((CLK_PERIOD / 2)) clk = ~clk;
     initial begin
-        instr_address = 8'h0;
-        #time_step;
-        instr_address = 8'h4;
-        #time_step;
-        instr_address = 8'h40;
-        #time_step;
-        instr_address = 8'h5C;
+        SWITCHES = 2'b00;
         #time_step;
     end
 endmodule

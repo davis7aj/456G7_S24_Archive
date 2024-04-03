@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 04/02/2024 02:55:47 PM
+// Create Date: 04/03/2024 01:28:32 PM
 // Design Name: 
-// Module Name: instr_mem_tb
+// Module Name: alu_ctrl_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,23 +20,24 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instr_mem_tb;
-    wire [31:0] instruction;
-    wire HALT;
-    reg [7:0] instr_address;
+module alu_ctrl_tb;
+    wire [3:0] out;
+    reg [1:0] ALUOp;
+    reg [3:0] FuncCode;
     
     localparam time_step = 20;
     
-    instr_mem instr_mem1(instr_address, HALT, instruction);
+    alu_ctrl ctrl(ALUOp, FuncCode, out);
     
     initial begin
-        instr_address = 8'h0;
+        ALUOp = 2'b0;
+        FuncCode = 4'b0;
         #time_step;
-        instr_address = 8'h4;
+        ALUOp = 2'b1;
+        FuncCode = 4'b0;
         #time_step;
-        instr_address = 8'h40;
-        #time_step;
-        instr_address = 8'h5C;
+        ALUOp = 2'd2;
+        FuncCode = 4'b0;
         #time_step;
     end
 endmodule

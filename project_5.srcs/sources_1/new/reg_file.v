@@ -24,7 +24,6 @@
 //ports for reading as shown in the figure as well
 
 module reg_file(
-    input clk,
     input [4:0] reg_1,
     input [4:0] reg_2,
     input [4:0] write_reg,
@@ -36,12 +35,17 @@ module reg_file(
     
     reg [31:0] registers [31:0];
     
+    integer i;
+    initial begin
+        // Initializes data memory to 0
+        for (i = 0; i <= 31; i = i + 1) begin
+            registers[i] = 32'b0;
+        end
+    end
+    
     always @(*) begin
         read_data_1 <= registers[reg_1];
         read_data_2 <= registers[reg_2];
-    end
-    // is this the right move? is clock needed, idk how to implement write back
-    always @(posedge clk) begin
         if (reg_write == 1) begin
             registers[write_reg] <= write_data;
         end

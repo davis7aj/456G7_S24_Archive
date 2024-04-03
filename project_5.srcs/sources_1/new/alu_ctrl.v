@@ -26,11 +26,9 @@
 
 module alu_ctrl(
     input [1:0] ALUOp,
-    input [4:0] FuncCode,
+    input [3:0] FuncCode,
     output reg [3:0] out
     );
-    
-    // distinguishing andi addi?
     
     always @(*) begin
         case (ALUOp)

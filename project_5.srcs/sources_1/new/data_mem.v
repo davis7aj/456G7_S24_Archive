@@ -25,8 +25,6 @@
 //port for data. This is similar to the RAM design in a previous lab.
 
 module data_mem(
-    input clk,
-    input data_address, // One bit or array?
     input memwrite,
     input memread,
     input [31:0] address,
@@ -34,28 +32,20 @@ module data_mem(
     output reg [31:0] read_data 
     );
     
-    reg [31:0] data_memory [255:0];
+    reg [31:0] data_memory [72:0];
     
-    integer i;
     initial begin
-        // Initializes data memory to 0
-        for (i = 0; i <= 255; i = i + 1) begin
-            data_memory[i] = 32'b0;
-        end
-        
         // Sets hard coded values
-        data_memory[256'h0] = 32'h00C0FFEE;
-        data_memory[256'h4] = 32'hA5A5A5A5;
+        data_memory[256'h0]  = 32'h00C0FFEE;
+        data_memory[256'h4]  = 32'hA5A5A5A5;
         data_memory[256'h40] = 32'hFFFFFFFF;
         data_memory[256'h44] = 32'h1;
     end
     
-    // clk used?
-    always @(posedge clk) begin
+    always @(*) begin
         if (memwrite) begin
             data_memory[address] <= write_data;
         end
         read_data <= data_memory[address];
     end
-    
 endmodule

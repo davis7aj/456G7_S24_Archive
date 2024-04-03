@@ -21,8 +21,38 @@
 
 
 module alu_32_tb;
+    wire [31:0] result;
     wire zero;
     wire overflow;
     wire carryout;
-    wire [31:0] result;
+    reg signed [31:0] a;
+    reg signed [31:0] b;
+    reg [3:0] ALUctl;
+    
+    alu_32 alu32(a, b, ALUctl, result, zero, overflow, carryout);
+    localparam time_step = 20;
+    
+    initial begin
+        a = 32'b0;
+        b = 32'b1;
+        ALUctl = 4'b0;
+        #time_step;
+        a = 32'b1;
+        b = 32'b1;
+        ALUctl = 4'b0;
+        #time_step;
+        a = 32'b0;
+        b = 32'b1;
+        ALUctl = 4'b0001;
+        #time_step;
+        a = 32'b1;
+        b = 32'b1;
+        ALUctl = 4'b0010;
+        #time_step;
+        a = 32'b1;
+        b = 32'b1;
+        ALUctl = 4'b0010;
+        #time_step;
+    end
+    
 endmodule

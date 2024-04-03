@@ -38,8 +38,7 @@ module alu_32(
             4'b0001: result <= a | b;
             4'b0010: result <= a + b;
             4'b0110: result <= a - b;
-            4'b0111: result <= (a < b) ? 32'b1 : 32'b0;
-            4'b1100: result <=   ~(a | b);
+            default: result <= a & b;
         endcase
         
         // Handles Zero, and Carryout and Overflow for Addition and Subtraction operations.
