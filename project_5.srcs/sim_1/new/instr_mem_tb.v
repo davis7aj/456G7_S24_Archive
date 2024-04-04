@@ -23,20 +23,21 @@
 module instr_mem_tb;
     wire [31:0] instruction;
     wire HALT;
-    reg [7:0] instr_address;
+    reg [31:0] instr_address;
     
     localparam time_step = 20;
     
     instr_mem instr_mem1(instr_address, HALT, instruction);
     
     initial begin
-        instr_address = 8'h0;
         #time_step;
-        instr_address = 8'h4;
+        instr_address = 32'h0;
         #time_step;
-        instr_address = 8'h40;
+        instr_address = 32'h4;
         #time_step;
-        instr_address = 8'h5C;
+        instr_address = 32'h40;
+        #time_step;
+        instr_address = 32'h5C;
         #time_step;
     end
 endmodule

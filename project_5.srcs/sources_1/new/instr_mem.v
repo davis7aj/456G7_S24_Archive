@@ -26,7 +26,7 @@
 //specified.
 
 module instr_mem(
-    input [7:0] instr_address,
+    input [31:0] instr_address,
     output reg HALT,
     output reg [31:0] instruction
     );
@@ -53,24 +53,29 @@ module instr_mem(
     
     always @(*) begin
         case (instr_address)
-            8'h0: instruction = memory[0];
-            8'h4: instruction = memory[1];
-            8'h8: instruction = memory[2];
-            8'hC: instruction = memory[72];
+            32'h0: instruction = memory[0];
+            32'h4: instruction = memory[1];
+            32'h8: instruction = memory[2];
+            32'hC: instruction = memory[72];
             
-            8'h40: instruction = memory[63];
-            8'h44: instruction = memory[64];
-            8'h48: instruction = memory[65];
-            8'h4C: instruction = memory[66];
-            8'h50: instruction = memory[67];
-            8'h54: instruction = memory[68];
-            8'h58: instruction = memory[69];
-            8'h5C: instruction = memory[70];
-            8'h60: instruction = memory[71];
-            8'h64: instruction = memory[72];
+            32'h40: instruction = memory[63];
+            32'h44: instruction = memory[64];
+            32'h48: instruction = memory[65];
+            32'h4C: instruction = memory[66];
+            32'h50: instruction = memory[67];
+            32'h54: instruction = memory[68];
+            32'h58: instruction = memory[69];
+            32'h5C: instruction = memory[70];
+            32'h60: instruction = memory[71];
+            32'h64: instruction = memory[72];
+            default: instruction = memory[0];
         endcase
+        
         if (instruction == 0) begin
             HALT <= 1;
+        end
+        else begin
+            HALT <= 0;
         end
     end
     // can

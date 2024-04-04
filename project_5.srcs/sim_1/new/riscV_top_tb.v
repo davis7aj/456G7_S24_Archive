@@ -24,15 +24,18 @@ module riscV_top_tb;
     wire [5:0] LEDS;
     reg [1:0] SWITCHES;
     reg clk = 0;
-    wire [7:0] current;
-    localparam time_step = 20;
-    parameter CLK_PERIOD = 10;
-    riscV_top top(clk, SWITCHES, LEDS, current);
     
+    localparam time_step = 100;
+    parameter CLK_PERIOD = 10;
+    
+    riscV_top top(clk, SWITCHES, LEDS);
     
     always #((CLK_PERIOD / 2)) clk = ~clk;
     initial begin
         SWITCHES = 2'b00;
+        #time_step;
+        SWITCHES = 2'b11;
+        #time_step;
         #time_step;
     end
 endmodule

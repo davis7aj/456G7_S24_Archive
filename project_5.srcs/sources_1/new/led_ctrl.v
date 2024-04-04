@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 04/02/2024 03:14:56 PM
+// Create Date: 04/03/2024 07:55:05 PM
 // Design Name: 
-// Module Name: mux32_2
+// Module Name: led_ctrl
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,18 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module mux32_2 (
-    input [31:0] a,
-    input [31:0] b,
-    input select,
-    output reg [31:0] out
-);
-
-always @(*) begin
-    if (select == 1)
-        out <= a;
-    else
-        out <= b;
-end
-
+module led_ctrl(
+    input clk,
+    input [5:0] in,
+    output reg [5:0] out
+    );
+    
+    always @(posedge clk) begin
+        out <= in;
+    end
 endmodule
