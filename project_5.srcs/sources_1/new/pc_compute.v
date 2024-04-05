@@ -18,7 +18,9 @@ module pc_compute (
                 default: pc <= pc + 4;
             endcase
         end
-        
+        else begin
+            pc <= pc + 0; // Increment by 0 when HALT is 1
+        end
     end
 
 endmodule
