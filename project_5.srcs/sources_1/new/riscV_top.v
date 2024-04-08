@@ -30,8 +30,6 @@ module riscV_top(
     wire HALT;
     instr_mem   instr_mem_1({pc_out[31:7], SWITCHES[0], pc_out[5:0]}, HALT, instruction);
     
-    pc_compute  pc_1(clk, imm_val, control_out[2], zero, HALT, pc_out);
-    
     wire [31:0] imm_val;         // Output of immediate
     immediate   imm_1(instruction, imm_val);
     
@@ -60,5 +58,7 @@ module riscV_top(
     wire [31:0] mem_mux_out;     // Output of Mem mux, Alu result or write_data
     mux32_2     mem_mux(read_data_mem, alu_out, control_out[6], mem_mux_out); // 1 - read data, 0 - alu result, MemToReg];
     
-    led_ctrl led_ctl(clk, mem_mux_out[5:0], LEDS);
+    pc_compute  pc_1(clk, imm_val, control_out[2], zero, HALT, pc_out);
+    
+    led_ctrl led_ctl(clk, HALT, mem_mux_out[5:0], LEDS);
 endmodule

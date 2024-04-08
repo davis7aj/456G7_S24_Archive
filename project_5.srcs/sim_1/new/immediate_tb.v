@@ -28,10 +28,9 @@ module immediate_tb(
     localparam time_step = 10;
     
     initial begin
+        // 0000000111000011100000010 110 0011
+        instruction = 32'h01c38163;
         #time_step;
-        instruction = 32'h03C38463;
-        #time_step;
-        instruction = 32'h0005A303;
-        #time_step;
+        
     end
 endmodule

@@ -22,11 +22,14 @@
 
 module led_ctrl(
     input clk,
+    input HALT,
     input [5:0] in,
     output reg [5:0] out
     );
     
     always @(posedge clk) begin
-        out <= in;
+        if (HALT == 0) begin
+            out <= in;
+        end
     end
 endmodule

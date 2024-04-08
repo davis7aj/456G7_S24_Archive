@@ -37,7 +37,7 @@ module reg_file(
     
     integer i;
     initial begin
-        // Initializes data memory to 0
+        // Initializes reg memory to 0
         for (i = 0; i <= 31; i = i + 1) begin
             registers[i] = 32'b0;
         end

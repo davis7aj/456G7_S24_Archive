@@ -25,17 +25,33 @@ module riscV_top_tb;
     reg [1:0] SWITCHES;
     reg clk = 0;
     
-    localparam time_step = 100;
+    localparam time_step = 10;
+    localparam time_step2 = 35;
     parameter CLK_PERIOD = 10;
     
     riscV_top top(clk, SWITCHES, LEDS);
     
     always #((CLK_PERIOD / 2)) clk = ~clk;
     initial begin
-        SWITCHES = 2'b00;
-        #time_step;
+//        SWITCHES = 2'b00;
+//        #time_step2;
         SWITCHES = 2'b11;
         #time_step;
         #time_step;
+        #time_step;
+        #time_step;
+        #time_step;
+        #time_step;
+        #time_step;
+        #time_step;
+        #100;
+        $finish;
+//        #time_step;
+//        #time_step;
+//        #time_step;
+//        #time_step;
+//        #time_step;
+//        #time_step;
+//        #time_step;
     end
 endmodule
